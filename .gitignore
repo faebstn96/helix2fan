@@ -1,0 +1,6 @@
+.idea/
+!out/.gitkeep
+__pycache__/
+*.log
+*.tif
+*.npy
