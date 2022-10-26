@@ -68,8 +68,9 @@ def read_dicom(parser):
     :return: the raw projection data, a parser that contains all relevant DICOM header
     parameters for rebinning and reconstruction
     """
-    indices = slice(parser.idx_proj_start, parser.idx_proj_stop)
-    data_headers, raw_projections = read_projections(parser.path_dicom, indices)
+    args = parser.parse_args()
+    indices = slice(args.idx_proj_start, args.idx_proj_stop)
+    data_headers, raw_projections = read_projections(args.path_dicom, indices)
 
     # Read geometry information from the DICOM headers following instructions from the
     # TCIA (LDCT-and-Projection-data) DICOM-CT-PD User Manual Version 3.

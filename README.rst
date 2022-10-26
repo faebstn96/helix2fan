@@ -3,9 +3,9 @@
 .. image:: https://img.shields.io/badge/arXiv-2201.10345-f9f107.svg
     :target: https://arxiv.org/abs/2201.10345
 
-==========================================
+=================================================================================================================
 Helix2Fan: Helical to fan-beam CT geometry rebinning and differentiable reconstruction of DICOM-CT-PD projections
-==========================================
+=================================================================================================================
 
 This repository provides code to load raw helical DICOM-CT-PD CT projections and
 rebin them to flat detector fan-beam geometry. We follow the algorithm
@@ -18,8 +18,8 @@ framework. This differentiable operator allows propagating a loss metric, calcul
 back to the projection data. It, therefore, enables intervening into the reconstruction pipeline at different stages
 with, e.g., neural networks.
 
-In our associated paper `On the benefit of dual-domain denoising in a self-supervised low-dose CT setting <xyz>`__
-we use this framework to render medical low-dose CT data acquired on a helical trajectory possible for end-to-end
+In our associated paper `On the benefit of dual-domain denoising in a self-supervised low-dose CT setting <https://arxiv.org/pdf/xyz.pdf>`__
+we use this framework to render medical low-dose CT data acquired on a helical trajectory suitable for end-to-end
 reconstruction and denoising in both projection and image domain using neural networks. Please refer to our
 `arXiv <https://arxiv.org/pdf/xyz.pdf>`__ publication if you find our code useful.
 
@@ -34,8 +34,8 @@ abdomen/chest/head CT scans in the DICOM-CT-PD format. Please download projectio
 from `their repository <https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=52758026>`__ to run
 the rebinning in this framework.
 
-Setup:
-~~~~~~
+Setup rebinning:
+~~~~~~~~~~~~~~~~
 
 1. Create and activate a python environment (python>=3.7).
 2. Install `Torch <https://pytorch.org/get-started/locally/>`__.
@@ -44,40 +44,67 @@ Setup:
 
 .. code:: bash
 
-   python main.py --path_dicom /path/to/DICOM-CT-PD/data/folder
+   python main.py --path_dicom '/path/to/DICOM-CT-PD/data/folder'
 
 5. Find the rebinned data in the out folder (default).
 
+Setup differentiable reconstruction:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 If you want to run the reconstruction script you additionally need to install torch-radon
 
-1. Install `torch-radon <https://github.com/matteo-ronchetti/torch-radon>`__
+1. Download `torch-radon <https://github.com/matteo-ronchetti/torch-radon>`__
 
 .. code:: bash
 
    git clone https://github.com/matteo-ronchetti/torch-radon.git
    cd torch-radon
+
+2. The current torch-radon repository uses some outdated PyTorch functions. You can use the torch-radon_fix.patch in the torch-radon_fix folder of the helix2fan repository to fix this problem:
+
+.. code:: bash
+
+   git apply path/to/helix2fan/torch-radon_fix/torch-radon_fix.patch
+
+3. Install torch-radon
+
+.. code:: bash
+
    python setup.py install
 
-2. The current torch-radon repository uses some outdated PyTorch functions. You can use the torch-radon_fix.patch in the torch-radon_fix folder of this repository to fix this problem:
+4. Run the reconstruction code using the rebinned projections .tif:
 
 .. code:: bash
 
-   cd helix2fan
-   git apply torch-radon_fix/torch-radon_fix.patch
+   python reco_example_fan_beam.py --path_proj '/path/to/fan-beam/projections.tif'
 
-3. Run the reconstruction code using the rebinned data:
-
-.. code:: bash
-
-   python reco_example_fan_beam.py --path_proj /path/to/fan-beam/projections.tif
-
-4. Find the reconstructed CT images in the out folder (default).
+5. Find the reconstructed CT images in the out folder (default).
 
 
 Example scripts:
 ~~~~~~~~~~~~~~~~
 -  Please use the main.py for projection loading and rebinning.
 -  Please use reco_example_fan_beam.py to reconstruct the final CT image from the rebinned projection data.
+
+
+Some tips:
+~~~~~~~~~~
+-  Make sure you rebin enough projections acquired on the helical trajectory to coverall 360deg of the volume
+   slices you are interested in.
+-  The reconstructed volume will contain streaks and artifacts in slices where you did not use projections from
+   all 360deg
+-  The start and end index of the helical projections that are loaded and used can be chosen with the arguments
+   --idx_proj_start and --idx_proj_stop
+
+.. code:: bash
+
+   python main.py --path_dicom '/path/to/DICOM-CT-PD/data/folder' --idx_proj_start 12000 --idx_proj_stop 16000
+
+-  Rebinning all available helical projections from TCIA abdomen scans can take quite some time. So, make sure you
+   choose start and stop index according to the CT slices you are interested in.
+-  Other rebinning and reconstruction arguments are listed in the main.py and reco_example_fan_beam.py scripts and
+   can be set via command line or code.
+
 
 Citation:
 ~~~~~~~~~
