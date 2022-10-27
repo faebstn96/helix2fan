@@ -56,9 +56,6 @@ def run(parser):
 
 
 if __name__ == '__main__':
-
-    path_dicom = '/media/fabian/HD0/Data/DATABASE_Cancer_Archive/projection_data_2022-09-27/L277/08-27-2018-NA-NA-06585/1.000000-Low dose projections-15901'
-
     parser = argparse.ArgumentParser()
     parser.add_argument('--path_dicom', type=str, required=True, help='Local path of helical projection data.')
     parser.add_argument('--path_out', type=str, default='out', help='Output path of rebinned data.')

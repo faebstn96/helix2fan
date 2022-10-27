@@ -23,6 +23,8 @@ we use this framework to render medical low-dose CT data acquired on a helical t
 reconstruction and denoising in both projection and image domain using neural networks. Please refer to our
 `arXiv <https://arxiv.org/pdf/xyz.pdf>`__ publication if you find our code useful.
 
+.. image:: out/example_reco.png
+
 Projection data (DICOM-CT-PD):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

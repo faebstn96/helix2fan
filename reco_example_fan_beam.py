@@ -44,7 +44,7 @@ def run_reco(args):
 
     print('Reconstruction saved to {}.'.format(save_path))
 
-    return fbp_hu
+    return projections, fbp_hu
 
 
 if __name__ == '__main__':
@@ -58,8 +58,16 @@ if __name__ == '__main__':
                         choices=['ram-lak', 'shepp-logan', 'cosine', 'hamming', 'hann'], help='Filter used for FBP.')
     args = parser.parse_args()
 
-    fbp_hu = run_reco(args)
+    projections, fbp_hu = run_reco(args)
 
-    plt.imshow(fbp_hu[int(fbp_hu.shape[0] * 0.5)], cmap='gray', vmin=-500, vmax=300)
-    plt.axis('off')
+    # Plot results.
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(9, 3), gridspec_kw={'width_ratios': [2, 1]})
+    axes[0].imshow(np.transpose(projections[:, :, int(projections.shape[2] * 0.5)]), cmap='gray')
+    axes[0].set_title('Rebinned projections (fan-beam)', fontsize=16)
+    axes[0].axis('off')
+    axes[1].imshow(fbp_hu[int(fbp_hu.shape[0] * 0.5)], cmap='gray', vmin=-300, vmax=300)
+    axes[1].set_title('Reconstruction', fontsize=16)
+    axes[1].axis('off')
+    fig.tight_layout(h_pad=0.0, w_pad=0.0)
+    # plt.savefig('out/example_reco.png', dpi=400, bbox_inches='tight', pad_inches = 0)
     plt.show()
