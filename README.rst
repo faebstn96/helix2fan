@@ -1,7 +1,7 @@
 .. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
     :target: https://opensource.org/licenses/Apache-2.0
-.. image:: https://img.shields.io/badge/arXiv-2201.10345-f9f107.svg
-    :target: https://arxiv.org/abs/2201.10345
+.. image:: https://img.shields.io/badge/arXiv-2211.01111-f7dda4.svg
+    :target: https://arxiv.org/abs/2211.01111
 
 =================================================================================================================
 Helix2Fan: Helical to fan-beam CT geometry rebinning and differentiable reconstruction of DICOM-CT-PD projections
@@ -18,10 +18,10 @@ framework. This differentiable operator allows propagating a loss metric, calcul
 back to the projection data. It, therefore, enables intervening into the reconstruction pipeline at different stages
 with, e.g., neural networks.
 
-In our associated paper `On the benefit of dual-domain denoising in a self-supervised low-dose CT setting <https://arxiv.org/pdf/xyz.pdf>`__
+In our associated paper `On the benefit of dual-domain denoising in a self-supervised low-dose CT setting <https://arxiv.org/pdf/2211.01111.pdf>`__
 we use this framework to render medical low-dose CT data acquired on a helical trajectory suitable for end-to-end
 reconstruction and denoising in both projection and image domain using neural networks. Please refer to our
-`arXiv <https://arxiv.org/pdf/xyz.pdf>`__ publication if you find our code useful.
+`arXiv <https://arxiv.org/pdf/2211.01111.pdf>`__ publication if you find our code useful.
 
 .. image:: out/example_reco.png
 
@@ -91,7 +91,7 @@ Example scripts:
 
 Some tips:
 ~~~~~~~~~~
--  Make sure you rebin enough projections acquired on the helical trajectory to coverall 360deg of the volume
+-  Make sure you rebin enough projections acquired on the helical trajectory to cover all 360deg of the volume
    slices you are interested in.
 -  The reconstructed volume will contain streaks and artifacts in slices where you did not use projections from
    all 360deg
@@ -108,6 +108,20 @@ Some tips:
    can be set via command line or code.
 
 
+Disclaimer:
+~~~~~~~~~~~
+Right now the helical to fan beam geometry rebinning does not properly correct for the flying focal spot (FFS)
+acquisition. All required geometry parameters are correctly read out from the DICOM-CT-PD raw data
+(--dangles, --dz, --drho). However, torch-radon currently does not support shifting the source
+position relative to the detector which would be required to accurately correct for FFS. The soon released
+revised version of torch-radon will be capable to handle such shifts. We will then adapt the helix2fan code accordingly.
+For now please use the example scripts if you want to do differentiable FBP. Alternatively, consider the --dangles, --dz, --drho
+parameters in your custom reconstruction code to achieve reconstruction qualities even closer to the vendor's scanner
+reconstruction software (even without proper FFS correction is the reconstruction quality reasonable).
+The geometry of the different FFS protocols are defined in the
+`DICOM-CT-PD User Manual <https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=52758026>`__.
+
+
 Citation:
 ~~~~~~~~~
 
@@ -118,9 +132,9 @@ If you find our code useful, please cite our work
    @article{wagner2022dual,
      title={On the benefit of dual-domain denoising in a self-supervised low-dose CT setting},
      author={Wagner, Fabian and Thies, Mareike and Pfaff, Laura and Aust, Oliver and Pechmann, Sabrina and Maul, Noah and Rohleder, Maximilian and Gu, Mingxuan and Utz, Jonas and Denzinger, Felix and Maier, Andreas},
-     journal={arXiv preprint arXiv:xyz},
+     journal={arXiv preprint arXiv:2211.01111},
      year={2022},
-     doi={https://arxiv.org/xyz}
+     doi={https://doi.org/10.48550/arXiv.2211.01111}
    }
 
 
