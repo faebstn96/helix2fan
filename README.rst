@@ -33,7 +33,7 @@ loading and preparing the projection data and geometry information for rebinning
 The largest public low-dose CT image and projection data set
 `LDCT-and-Projection-data <https://doi.org/10.1002/mp.14594>`__ provides projection data of more than 100
 abdomen/chest/head CT scans in the DICOM-CT-PD format. Please download projection data
-from `their repository <https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=52758026>`__ to run
+from `their public repository <https://doi.org/10.7937/9NPB-2637>`__ to run
 the rebinning in this framework.
 
 Setup rebinning:
@@ -41,7 +41,7 @@ Setup rebinning:
 
 1. Create and activate a python environment (python>=3.7).
 2. Install `Torch <https://pytorch.org/get-started/locally/>`__.
-3. Download the DICOM-CT-PD projection data from `TCIA <https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=52758026>`__.
+3. Download the DICOM-CT-PD projection data from `TCIA <https://doi.org/10.7937/9NPB-2637>`__.
 4. Run the rebinning code:
 
 .. code:: bash
@@ -119,7 +119,7 @@ For now please use the example scripts if you want to do differentiable FBP. Alt
 parameters in your custom reconstruction code to achieve reconstruction qualities even closer to the vendor's scanner
 reconstruction software (even without proper FFS correction is the reconstruction quality reasonable).
 The geometry of the different FFS protocols are defined in the
-`DICOM-CT-PD User Manual <https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=52758026>`__.
+`DICOM-CT-PD User Manual <https://doi.org/10.7937/9NPB-2637>`__.
 
 
 Citation:
@@ -130,7 +130,7 @@ If you find our code useful, please cite our work
 ::
 
    @article{wagner2022dual,
-     title={On the benefit of dual-domain denoising in a self-supervised low-dose CT setting},
+     title={On the Benefit of Dual-domain Denoising in a Self-Supervised Low-dose CT Setting},
      author={Wagner, Fabian and Thies, Mareike and Pfaff, Laura and Aust, Oliver and Pechmann, Sabrina and Maul, Noah and Rohleder, Maximilian and Gu, Mingxuan and Utz, Jonas and Denzinger, Felix and Maier, Andreas},
      journal={arXiv preprint arXiv:2211.01111},
      year={2022},
