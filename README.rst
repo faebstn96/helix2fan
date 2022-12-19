@@ -137,6 +137,17 @@ If you find our code useful, please cite our work
      doi={https://doi.org/10.48550/arXiv.2211.01111}
    }
 
+and the corresponding public data set
+
+::
+
+   @misc{mccollough2020low,
+     title={Low Dose CT Image and Projection Data (LDCT-and-Projection-data) (Version 5)},
+     author={McCollough, C and Chen, B and Holmes, D and Duan, X and Yu, Z and Yu, L and Leng, S and Fletcher, J},
+     journal={The Cancer Imaging Archive},
+     year={2020},
+     doi={https://doi.org/10.7937/9NPB-2637}
+   }
 
 Troubleshooting
 ~~~~~~~~~~~~~~~
