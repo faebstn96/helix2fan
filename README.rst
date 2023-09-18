@@ -1,5 +1,7 @@
 .. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
     :target: https://opensource.org/licenses/Apache-2.0
+.. image:: https://img.shields.io/badge/DOI-10.1109/ISBI53787.2023.10230511-1f425f.svg
+    :target: https://doi.org/10.1109/ISBI53787.2023.10230511
 .. image:: https://img.shields.io/badge/arXiv-2211.01111-f7dda4.svg
     :target: https://arxiv.org/abs/2211.01111
 
