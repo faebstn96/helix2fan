@@ -20,8 +20,8 @@ framework. This differentiable operator allows propagating a loss metric, calcul
 back to the projection data. It, therefore, enables intervening into the reconstruction pipeline at different stages
 with, e.g., neural networks.
 
-In our associated paper `On the benefit of dual-domain denoising in a self-supervised low-dose CT setting <https://doi.org/10.1109/ISBI53787.2023.10230511>`__
-we use this framework to render medical low-dose CT data acquired on a helical trajectory suitable for end-to-end
+In our associated publication `On the benefit of dual-domain denoising in a self-supervised low-dose CT setting <https://doi.org/10.1109/ISBI53787.2023.10230511>`__
+(best paper award ISBI 2023) we use this framework to render medical low-dose CT data acquired on a helical trajectory suitable for end-to-end
 reconstruction and denoising in both projection and image domain using neural networks. Please refer to our
 `ISBI <https://doi.org/10.1109/ISBI53787.2023.10230511>`__ (`arXiv <https://arxiv.org/pdf/2211.01111.pdf>`__) publication if you find our code useful.
 
