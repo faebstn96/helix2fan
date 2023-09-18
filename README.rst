@@ -129,12 +129,14 @@ If you find our code useful, please cite our work
 
 ::
 
-   @article{wagner2022dual,
+   @inproceedings{wagner2022dual,
      title={On the Benefit of Dual-domain Denoising in a Self-Supervised Low-dose CT Setting},
      author={Wagner, Fabian and Thies, Mareike and Pfaff, Laura and Aust, Oliver and Pechmann, Sabrina and Maul, Noah and Rohleder, Maximilian and Gu, Mingxuan and Utz, Jonas and Denzinger, Felix and Maier, Andreas},
-     journal={arXiv preprint arXiv:2211.01111},
-     year={2022},
-     doi={https://doi.org/10.48550/arXiv.2211.01111}
+     booktitle={2023 IEEE 20th International Symposium on Biomedical Imaging (ISBI)},
+     pages={1--5},
+     year={2023},
+     organization={IEEE}
+     doi={https://doi.org/10.1109/ISBI53787.2023.10230511}
    }
 
 and the corresponding public data set
